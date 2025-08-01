@@ -1,9 +1,9 @@
 # 📦 Streamlit App (Versão Final Corrigida) - Previsão de Rotatividade com Gráficos
 import streamlit as st
 import pandas as pd
-import joblib
 import matplotlib.pyplot as plt
 import numpy as np
+import pickle
 
 # Configuração inicial
 st.set_page_config(page_title="Previsão de Rotatividade", layout="centered")
@@ -12,7 +12,9 @@ st.write("Preencha os dados abaixo para prever se o funcionário pode sair da em
          "O resultado virá com probabilidade e gráficos comparativos.")
 
 # Carregar modelo e base
-modelo = joblib.load('modelo_xgboost_final.joblib')
+# modelo = joblib.load('modelo_xgboost_final.joblib')
+with open('modelo_xgboost_final.joblib', 'rb') as f:
+    modelo = pickle.load(f)
 df_empresa = pd.read_csv('rh_data.csv')
 
 # Mapas amigáveis
